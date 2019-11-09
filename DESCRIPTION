@@ -1,0 +1,12 @@
+Package: overwatchr
+Title: R Interface to Query, Store, and Analyze OWAPI Data
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Benjamin",
+           family = "Bellman",
+           role = c("aut", "cre"),
+           email = "ben.h.bellman@gmail.com")
+Description: This package provides a suite of functions for the collection of data about public Overwatch accounts from the unofficial OWAPI.
+License: CC0
+Encoding: UTF-8
+LazyData: true
