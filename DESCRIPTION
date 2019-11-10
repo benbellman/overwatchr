@@ -1,6 +1,13 @@
 Package: overwatchr
 Title: R Interface to Query, Store, and Analyze OWAPI Data
 Version: 0.0.0.9000
+Imports:
+    dplyr,
+    jsonlite,
+    lubridate,
+    purrr,
+    readr,
+    tibble
 Authors@R: 
     person(given = "Benjamin",
            family = "Bellman",
