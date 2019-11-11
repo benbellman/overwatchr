@@ -4,7 +4,7 @@ owapi_query <- function(profile, platform){
 
   # query the API and parse JSON data
   owapi_url <- paste0("https://owapi.net/api/v3/u/", profile, "/blob?platform=", platform)
-  api_obj <- jsonlite::fromJSON(file = owapi_url)
+  api_obj <- rjson::fromJSON(file = owapi_url)
 
   # create row of general account stats from competitive play
   overall_stats <- api_obj$any$stats$competitive$overall_stats

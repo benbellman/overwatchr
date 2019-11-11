@@ -3,10 +3,10 @@ Title: R Interface to Query, Store, and Analyze OWAPI Data
 Version: 0.0.0.9100
 Imports:
     dplyr,
-    jsonlite,
     lubridate,
     purrr,
     readr,
+    rjson,
     tibble
 Authors@R: 
     person(given = "Benjamin",
