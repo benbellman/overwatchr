@@ -4,6 +4,7 @@ Version: 0.0.0.9100
 Imports:
     dplyr,
     lubridate,
+    magrittr,
     purrr,
     readr,
     rjson,
