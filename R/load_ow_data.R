@@ -25,7 +25,7 @@ load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
   # else recalculate hero stats (make this a module eventually)
 
   # split into columns to preserve as is (information, cumulative rates), and columns to re-calulate by day
-  as_is <- select(raw_data, profile, platform, hero, datetime, day, month, year, season, dplyr::contains("percentage"), dplyr::contains("accuracy"))
+  as_is <- dplyr::select(raw_data, profile, platform, hero, datetime, day, month, year, season, dplyr::contains("percentage"), dplyr::contains("accuracy"))
   re_calc <- raw_data[, names(raw_data) %in% names(as_is) == F]
 
   # fill in empty values of re_calc with 0
