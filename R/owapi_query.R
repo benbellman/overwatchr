@@ -15,7 +15,7 @@ owapi_query <- function(profile, platform){
     data.frame() %>%
     tibble::as_tibble() %>%
     dplyr::select(tank_comprank, damage_comprank, support_comprank, games, wins, endorsement_level, prestige, endorsement_sportsmanship, ties, endorsement_shotcaller, win_rate, endorsement_teammate, losses, level, profile, platform) %>%
-    bind_cols(process_datetime(datetime))
+    dplyr::bind_cols(process_datetime(datetime))
   game_stats <- api_obj$any$stats$competitive$game_stats %>%
     data.frame() %>%
     tibble::as_tibble()
@@ -30,7 +30,7 @@ owapi_query <- function(profile, platform){
 
     # check if object is empty, if it is, convert to empty list
     if (is.null(hero_stats)){
-      hero_stats <- tibble()
+      hero_stats <- tibble::tibble()
       output[[a]] <- hero_stats
       next()
     }
