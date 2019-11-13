@@ -1,14 +1,14 @@
-owapi_query <- function(profile, platform){
+owapi_query <- function(profile_name, platform){
   # set date and time of query from system
   datetime <- Sys.time()
 
   # query the API and parse JSON data
-  owapi_url <- paste0("https://owapi.net/api/v3/u/", profile, "/blob?platform=", platform)
+  owapi_url <- paste0("https://owapi.net/api/v3/u/", profile_name, "/blob?platform=", platform)
   api_obj <- rjson::fromJSON(file = owapi_url)
 
   # create row of general account stats from competitive play
   overall_stats <- api_obj$any$stats$competitive$overall_stats
-  overall_stats[["profile"]] <- profile
+  overall_stats[["profile"]] <- profile_name
   overall_stats[["platform"]] <- platform
   overall_stats[purrr::map_lgl(overall_stats, is.null)] <- NA
   overall_stats <- overall_stats %>%

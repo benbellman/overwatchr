@@ -19,3 +19,4 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/benbellman/overwatchr
 BugReports: https://github.com/benbellman/overwatchr/issues
+RoxygenNote: 6.1.1

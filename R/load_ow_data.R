@@ -1,4 +1,17 @@
+#' Load Overwatch data
+#'
+#' Load data obtained by OWAPI and overwatchr into R sesson for analysis. The returned data describes all play between each OWAPI query, and automatically calculates statistics per 10 minutes.
+#'
+#' @param profile_name A platform-agnostic profile name (Blizzard BattleTag, Xbox Gamertag, PSN ID).
+#' @param hero_table Text string specifying which hero to get data for (see hero_names()), or "profile" to get general profile information.
+#' @param season_choice An integer specifying which competitive season to get data for.
+#' @param file_path File path to where data has been saved by scrape_ow_data().
+#' @return A tibble of records containing stats for competitive play between saved OWAPI queries.
+#' @examples
+#' load_ow_data("catmaps", "moira", 19, here::here("player_data"))
 load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
+  # strip trailing slash if present
+  file_path <- gsub("/$", "", file_path)
 
   # load selected table
   suppressMessages(
@@ -51,6 +64,8 @@ load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
   scaled <- purrr::map_dfr(non_time_vars, purrr::as_mapper(~ .x / proc1$time_played_10m))
   names(scaled) <- paste0(names(scaled), "_p10")
 
-  # re-assemble and return final data
-  dplyr::bind_cols(proc1, scaled)
+  # re-assemble data
+  output <- dplyr::bind_cols(proc1, scaled)
+  # drop rows with no time played and return
+  dplyr::filter(output, time_played > 0)
 }
