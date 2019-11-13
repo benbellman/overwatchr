@@ -47,7 +47,7 @@ scrape_ow_data(
 When loading data from this folder, load\_ow\_data() must pull data for a single hero, for a single account, and for a single season in order for data transformation to be reliable and accurate.
 
 ``` r
-load_ow_data(
+moira_data <- load_ow_data(
   profile_name = "catmaps", 
   hero_table = "moira", 
   season_choice = 19, 
