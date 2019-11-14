@@ -3,6 +3,7 @@
 #' Text codes for Overwatch hero names used by OWAPI and overwatchr.
 #'
 #' @return A character vector.
+#' @export
 hero_names <- function(){
   c("roadhog", "torbjorn", "wrecking_ball", "bastion", "zenyatta", "ashe", "hanzo",
     "pharah", "mccree", "symmetra", "lucio", "orisa", "reinhardt", "winston", "moira",

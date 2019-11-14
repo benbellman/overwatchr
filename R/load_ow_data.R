@@ -9,6 +9,7 @@
 #' @return A tibble of records containing stats for competitive play between saved OWAPI queries.
 #' @examples
 #' load_ow_data("catmaps", "moira", 19, here::here("player_data"))
+#' @export
 load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
   # strip trailing slash if present
   file_path <- gsub("/$", "", file_path)

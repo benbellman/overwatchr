@@ -8,6 +8,7 @@
 #' @return No value returned in R session.
 #' @examples
 #' scrape_ow_data("catmaps", "psn", here::here("player_data"))
+#' @export
 scrape_ow_data <- function(profile_name, platform, file_path){
   profile_name <- gsub("\\#", "\\-", profile_name)
   save_owapi_data(owapi_query(profile_name, platform), file_path)
