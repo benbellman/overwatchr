@@ -7,7 +7,8 @@ Imports:
     purrr,
     readr,
     rjson,
-    tibble
+    tibble,
+    magrittr
 Authors@R: 
     person(given = "Benjamin",
            family = "Bellman",
