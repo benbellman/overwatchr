@@ -26,7 +26,8 @@ owapi_query <- function(profile_name, platform){
 
   # create row of stats for each hero in competitive play
   for(a in hero_names()){
-    hero_stats <- api_obj$any$heroes$stats$competitive[[a]]$general_stats
+    hero_stats <- c(api_obj$any$heroes$stats$competitive[[a]]$general_stats,
+                    api_obj$any$heroes$stats$competitive[[a]]$hero_stats)
 
     # check if object is empty, if it is, convert to empty list
     if (is.null(hero_stats)){
