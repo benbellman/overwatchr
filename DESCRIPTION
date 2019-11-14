@@ -1,6 +1,6 @@
 Package: overwatchr
 Title: R Interface to Query, Store, and Analyze OWAPI Data
-Version: 0.1.0
+Version: 0.1.1
 Imports:
     dplyr,
     lubridate,
