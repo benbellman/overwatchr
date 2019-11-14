@@ -6,7 +6,7 @@
 #' @param hero_table Text string specifying which hero to get data for (see hero_names()), or "profile" to get general profile information.
 #' @param season_choice An integer specifying which competitive season to get data for.
 #' @param file_path File path to where data has been saved by scrape_ow_data().
-#' @return A tibble of records containing stats for competitive play between saved OWAPI queries.
+#' @return A [tibble][tibble::tibble-package] of records containing stats for competitive play between saved OWAPI queries.
 #' @examples
 #' load_ow_data("catmaps", "moira", 19, here::here("player_data"))
 #' @export

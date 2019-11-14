@@ -16,7 +16,7 @@ load_ow_data(profile_name, hero_table, season_choice, file_path)
 \item{file_path}{File path to where data has been saved by scrape_ow_data().}
 }
 \value{
-A tibble of records containing stats for competitive play between saved OWAPI queries.
+A [tibble][tibble::tibble-package] of records containing stats for competitive play between saved OWAPI queries.
 }
 \description{
 Load data obtained by OWAPI and overwatchr into R sesson for analysis. The returned data describes all play between each OWAPI query, and automatically calculates statistics per 10 minutes.
