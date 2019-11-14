@@ -35,7 +35,7 @@ owapi_query <- function(profile_name, platform){
       next()
     }
 
-    hero_stats[["profile"]] <- profile
+    hero_stats[["profile"]] <- profile_name
     hero_stats[["platform"]] <- platform
 
     hero_stats <- hero_stats %>%
