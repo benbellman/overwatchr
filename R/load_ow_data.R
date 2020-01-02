@@ -61,6 +61,7 @@ load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
                   objective_time_ratio = objective_time / time_played) -> proc1
 
   # re-scale all count variables by time played
+  # this also needs to be a module
   non_time_vars <- dplyr::select(proc1[, names(proc1) %in% names(re_calc)], -dplyr::contains("time"))
   scaled <- purrr::map_dfr(non_time_vars, purrr::as_mapper(~ .x / proc1$time_played_10m))
   names(scaled) <- paste0(names(scaled), "_p10")
@@ -70,3 +71,13 @@ load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
   # drop rows with no time played and return
   dplyr::filter(output, time_played > 0)
 }
+
+# Notes
+
+# This code needs new modules for its innards
+# It also needs to be cleaner and more explicit in how its organizing different kinds of data that it treats differently
+
+# I also want the function to be pickier about which stats it re-calculates by session and per 10 min
+# this might require a deep dive into each hero and be defined by an actual list, and not text-based rules
+
+
