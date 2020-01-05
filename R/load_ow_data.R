@@ -57,9 +57,9 @@ load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
       dplyr::bind_cols(as_is, .) %>%
       # re-do time in increments of 10 minutes, calculate time ratios
       dplyr::mutate(time_played_10m = time_played*6,
-                    time_spent_on_fire_10m = time_spent_on_fire*6,
+                    #time_spent_on_fire_10m = time_spent_on_fire*6,
                     objective_time_10m = objective_time*6,
-                    on_fire_time_ratio = time_spent_on_fire / time_played,
+                    #on_fire_time_ratio = time_spent_on_fire / time_played,
                     objective_time_ratio = objective_time / time_played) -> proc1
   } else {
     dplyr::bind_cols(as_is, re_calc) %>%
