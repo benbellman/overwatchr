@@ -45,20 +45,32 @@ load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
   # fill in empty values of re_calc with 0
   re_calc[ is.na(re_calc) ] <- 0
 
-  # return re_calc as a difference from the previous row
-  mat1 <- as.matrix(re_calc[ 2:nrow(re_calc) ,])
-  mat2 <- as.matrix(re_calc[ 1:(nrow(re_calc)-1) ,])
-  diffs <- mat1 - mat2
+  # only calculate differences if more than 1 row for season
+  if(nrow(re_calc) > 1){
+    # return re_calc as a difference from the previous row
+    mat1 <- as.matrix(re_calc[ 2:nrow(re_calc) ,])
+    mat2 <- as.matrix(re_calc[ 1:(nrow(re_calc)-1) ,])
+    diffs <- mat1 - mat2
 
-  # assemble and return the first step of processed data
-  dplyr::bind_rows(dplyr::slice(re_calc, 1), tibble::as_tibble(diffs)) %>%
-    dplyr::bind_cols(as_is, .) %>%
-    # re-do time in increments of 10 minutes, calculate time ratios
+    # assemble and return the first step of processed data
+    dplyr::bind_rows(dplyr::slice(re_calc, 1), tibble::as_tibble(diffs)) %>%
+      dplyr::bind_cols(as_is, .) %>%
+      # re-do time in increments of 10 minutes, calculate time ratios
+      dplyr::mutate(time_played_10m = time_played*6,
+                    time_spent_on_fire_10m = time_spent_on_fire*6,
+                    objective_time_10m = objective_time*6,
+                    on_fire_time_ratio = time_spent_on_fire / time_played,
+                    objective_time_ratio = objective_time / time_played) -> proc1
+  } else {
+    dplyr::bind_cols(as_is, re_calc) %>%
     dplyr::mutate(time_played_10m = time_played*6,
                   time_spent_on_fire_10m = time_spent_on_fire*6,
                   objective_time_10m = objective_time*6,
                   on_fire_time_ratio = time_spent_on_fire / time_played,
                   objective_time_ratio = objective_time / time_played) -> proc1
+  }
+
+
 
   # re-scale all count variables by time played
   # this also needs to be a module
