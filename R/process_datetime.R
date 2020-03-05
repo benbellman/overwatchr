@@ -7,7 +7,9 @@ process_datetime <- function(datetime){
   # Based on information from Retail Patch Notes on Dec 10, 2019
   season <- dplyr::case_when(
     datetime < strptime("2020-01-02 13:00:00", format = "%Y-%m-%d %H:%M:%S", tz = "EST") ~ 19,
-    datetime >= strptime("2020-01-02 13:00:00", format = "%Y-%m-%d %H:%M:%S", tz = "EST") ~ 20
+    datetime >= strptime("2020-01-02 13:00:00", format = "%Y-%m-%d %H:%M:%S", tz = "EST") &
+      datetime < strptime("2020-03-05 13:00:00", format = "%Y-%m-%d %H:%M:%S", tz = "EST") ~ 20,
+    datetime >= strptime("2020-03-05 13:00:00", format = "%Y-%m-%d %H:%M:%S", tz = "EST") ~ 21
   )
 
   tibble::tibble(datetime, day, month, year, season)
