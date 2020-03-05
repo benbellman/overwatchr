@@ -81,7 +81,9 @@ load_ow_data <- function(profile_name, hero_table, season_choice, file_path){
   # re-assemble data
   output <- dplyr::bind_cols(proc1, scaled)
   # drop rows with no time played and return
-  dplyr::filter(output, time_played > 0)
+  dplyr::filter(output, time_played > 0) %>%
+    # create ID for unique session based on season and index #
+    mutate(session_id = paste0("s", season, "_", order(datetime)))
 }
 
 # Notes
